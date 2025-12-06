@@ -5,7 +5,6 @@ use ::aoc2025::read_input;
 fn main() {
     let input: String = read_input("inputs/05-12-2025.txt");
     let (ranges, _) = input.split_once("\n\n").unwrap();
-    // let mut ingredients: HashSet<u64> = HashSet::new();
     let mut sorted_ranges: Vec<&str> = ranges.lines().collect::<Vec<&str>>();
     sorted_ranges.sort();
     let mut final_ranges: Vec<RangeInclusive<u64>> = Vec::new();
