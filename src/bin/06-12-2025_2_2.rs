@@ -9,13 +9,12 @@ fn main() {
     let mut full_result: u64 = 0;
 
     for col_i in 0..operations.len() {
-        let mut number: u64 = 0;
-        for row in lines.iter().take(lines.len() - 1) {
-            let digit: char = row.chars().nth(col_i).unwrap();
-            if digit.is_digit(10) {
-                number = number * 10 + digit.to_digit(10).unwrap() as u64;
-            }
-        }
+        let number: u64 = lines
+            .iter()
+            .take(lines.len() - 1)
+            .filter_map(|line| line.chars().nth(col_i).and_then(|c| c.to_digit(10)))
+            .fold(0, |acc, digit| acc * 10 + digit as u64);
+
         if number == 0 {
             operation = operations[col_i + 1];
             full_result += result;
@@ -32,4 +31,3 @@ fn main() {
 
     println!("{}", full_result + result)
 }
-// 9627174150897
